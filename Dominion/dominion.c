@@ -642,7 +642,63 @@ int getCost(int cardNumber)
 	
   return -1;
 }
-
+int smithyfunc(int currentPlayer, struct gameState* state, int handPos){
+	int i = 0;
+	      for (i = 0; i < 3; i++)
+	{
+	  drawCard(handPos, state);
+	}
+			
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
+	
+}
+int villagefunc(int currentPlayer, struct gameState* state, int handPos){
+	//+1 Card
+      drawCard(currentPlayer, state);
+			
+      //+2 Actions
+      state->numActions = state->numActions + 2;
+			
+      //discard played card from hand
+      discardCard(state -> numActions, currentPlayer, state, 0);
+      return 0;
+	
+}
+int hallfunc(int currentPlayer, struct gameState* state, int handPos){
+	  //+1 Card
+      drawCard(currentPlayer, state);
+			
+      //+1 Actions
+      state->numActions++;
+			
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
+	
+}
+int outpostfunc(int currentPlayer, struct gameState* state, int handPos){
+	 //set outpost flag
+      state->outpostPlayed++;
+			
+      //discard card
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
+	
+}
+int sea_hagfunc(int currentPlayer, struct gameState* state, int handpos){
+	int i = 0;
+	      for (i = 0; i < state->numPlayers; i++){
+	if (i != currentPlayer){
+	  state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];			    state->deckCount[i]--;
+	  state->discardCount[i]++;
+	  state->deck[i][state->deckCount[i]--] = curse;//Top card now a curse
+	}
+      }
+      return 0;
+	
+}
 int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState *state, int handPos, int *bonus)
 {
   int i;
@@ -830,25 +886,10 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		
     case smithy:
       //+3 Cards
-      for (i = 0; i < 3; i++)
-	{
-	  drawCard(currentPlayer, state);
-	}
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+	smithyfunc(currentPlayer, state, handPos);
 		
     case village:
-      //+1 Card
-      drawCard(currentPlayer, state);
-			
-      //+2 Actions
-      state->numActions = state->numActions + 2;
-			
-      //discard played card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+      villagefunc(currentPlayer, state, handPos);
 		
     case baron:
       state->numBuys++;//Increase buys by 1!
@@ -902,15 +943,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case great_hall:
-      //+1 Card
-      drawCard(currentPlayer, state);
-			
-      //+1 Actions
-      state->numActions++;
-			
-      //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+    hallfunc(currentPlayer,state, handPos);
 		
     case minion:
       //+1 action
@@ -1156,12 +1189,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case outpost:
-      //set outpost flag
-      state->outpostPlayed++;
-			
-      //discard card
-      discardCard(handPos, currentPlayer, state, 0);
-      return 0;
+     outpostfunc(currentPlayer, state, handPos);
 		
     case salvager:
       //+1 buy
@@ -1180,14 +1208,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case sea_hag:
-      for (i = 0; i < state->numPlayers; i++){
-	if (i != currentPlayer){
-	  state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];			    state->deckCount[i]--;
-	  state->discardCount[i]++;
-	  state->deck[i][state->deckCount[i]--] = curse;//Top card now a curse
-	}
-      }
-      return 0;
+	sea_hagfunc(currentPlayer, state, handPos);
 		
     case treasure_map:
       //search hand for another treasure_map
@@ -1322,11 +1343,13 @@ int updateCoins(int player, struct gameState *state, int bonus)
 	}	
     }	
 
+
   //add bonus
   state->coins += bonus;
 
   return 0;
 }
+
 
 
 //end of dominion.c
