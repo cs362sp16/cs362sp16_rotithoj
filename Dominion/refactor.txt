@@ -1,0 +1,6 @@
+For this assignment, I refactored 5 cards out of cardEffect and put them in their own functions.
+The cards I did this for were:  smithy, village, great hall, outpost and sea hag. In order to 
+successfully do this, I looked at the variables that were being used in each card's case
+statement. I then passed these variables into the respective functions as parameters and placed
+all of the code for the card in the bodies of the functions. In 2 of the cards, I introduced 
+bugs, and these cards were: smithy and village.
