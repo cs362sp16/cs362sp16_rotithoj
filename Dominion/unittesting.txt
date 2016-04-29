@@ -1,0 +1,108 @@
+After testing out the program with 4 card test functions and 4 dominion functionality,
+I found the following results for each unit test:
+
+
+TEST FAILED
+
+GCOV AFTER UNITTEST1
+
+File 'dominion.c'
+
+Lines executed:17.14% of 560
+
+Creating 'dominion.c.gcov'
+
+
+
+TEST FAILED
+
+GCOV AFTER UNITTEST2
+
+File 'dominion.c'
+
+Lines executed:17.86% of 560
+
+Creating 'dominion.c.gcov'
+
+
+
+TEST SUCCESSFUL
+
+GCOV AFTER UNITTEST3
+
+File 'dominion.c'
+
+Lines executed:19.11% of 560
+
+Creating 'dominion.c.gcov'
+
+
+
+TEST SUCCESSFUL
+
+GCOV AFTER UNITTEST4
+
+File 'dominion.c'
+
+Lines executed:19.82% of 560
+
+Creating 'dominion.c.gcov'
+
+
+
+TEST FAILED
+
+GCOV AFTER CARDTEST1
+
+File 'dominion.c'
+
+Lines executed:22.32% of 560
+
+Creating 'dominion.c.gcov'
+
+
+
+TEST SUCCESSFUL
+
+GCOV AFTER CARDTEST2
+
+File 'dominion.c'
+
+Lines executed:23.57% of 560
+
+Creating 'dominion.c.gcov'
+
+
+
+TEST SUCCESSFUL
+
+GCOV AFTER CARDTEST3
+
+File 'dominion.c'
+
+Lines executed:25.18% of 560
+
+Creating 'dominion.c.gcov'
+
+
+
+TEST FAILED
+
+GCOV AFTER CARDTEST4
+
+File 'dominion.c'
+
+Lines executed:28.21% of 560
+
+Creating 'dominion.c.gcov'
+
+Here, it can be seen that cardtest1 was my test case with the largest coverage, and 
+it was the test for the great hall function. it had a coverage of 5.54%. The test with
+the least coverage was unittest4, which was for getCost. This had a coverage of .71%, 
+but I only tested it out on 2 cards. For all of the functions that I tested, my tests 
+did not uncover any bugs. One bug was uncovered in my tests during testing, and this was
+that the handCount variable in the state structure was not properly initialized. I got an overall 
+coverage of 13.57% My tests ws able to effectively test out the core functionality of the functions chosen,
+but the functions that I chose were not very large, as they were mostly between 10 and 
+15 lines of code. Also, I only wrote 8 test cases total. The implications here are that 
+the test were good, but I need to either add more tests in the future or test larger functions.

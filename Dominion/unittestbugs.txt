@@ -1,0 +1,25 @@
+Bugs I found during testing:
+
+Output from unittest1 is incorrect.
+The game is supposed to be over if there are no cards in the deck.
+I did not add any cards to the pile, since I never called the drawCard function.
+Therefore the game should be over.
+This indicates a possible issue with the initializeGame function.
+
+
+Output from unittest2 is incorrect.
+I added a card to the deck by setting handCount to 1.
+The numHandCards function is supposed to return the number of cards in hand.
+It should be 1 in this case.
+This indicates a possible issue with the initializeGame function.
+
+Output from cardtest1 is incorrect.
+The great hall function is supposed to add 1 action to numActions.
+This assertion failed, however.
+This indicates a likely issue with the hallfunc function and a possible issue 
+with the initializeGame function
+
+Output from cardtest4 is incorrect.
+The baron card is supposed to add 1 to the number of buys.
+This failed the assertion in this case.
+This indicates possible issues with the baron card implementation and the initializeGame function. 
