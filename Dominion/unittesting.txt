@@ -96,13 +96,14 @@ Lines executed:28.21% of 560
 
 Creating 'dominion.c.gcov'
 
-Here, it can be seen that cardtest1 was my test case with the largest coverage, and 
-it was the test for the great hall function. it had a coverage of 5.54%. The test with
+Here, it can be seen that unittest1 was my test case with the largest coverage, and 
+it was the test for the isGameOver function. it had a coverage of 17.14%. The test with
 the least coverage was unittest4, which was for getCost. This had a coverage of .71%, 
 but I only tested it out on 2 cards. For all of the functions that I tested, my tests 
 did not uncover any bugs. One bug was uncovered in my tests during testing, and this was
-that the handCount variable in the state structure was not properly initialized. I got an overall 
-coverage of 13.57% My tests ws able to effectively test out the core functionality of the functions chosen,
+that the handCount variable in the state structure was not properly initialized. Several bugs in the
+Dominion code were also uncovered anda are described in th unittestingbugs.txt file. I got an overall 
+coverage of 28.21% My tests were able to effectively test out the core functionality of the functions chosen,
 but the functions that I chose were not very large, as they were mostly between 10 and 
 15 lines of code. Also, I only wrote 8 test cases total. The implications here are that 
 the test were good, but I need to either add more tests in the future or test larger functions.
