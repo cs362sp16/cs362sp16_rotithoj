@@ -21,7 +21,7 @@ struct gameState * state = malloc(sizeof(struct gameState));
 state -> deck[player][1] == card;
 //initialize the game
 initializeGame(numplayers, kingdomCards, randomSeed, state);
-//make sure that the full deck count 
+//make sure that the full deck count is accurate
 	assertTrue(fullDeckCount(player, card, state) ==  0);
 	return 0;
 }
