@@ -47,3 +47,15 @@ File 'dominion.c'
 Lines executed:28.21% of 560
 Creating 'dominion.c.gcov'
 
+File 'randomtestcard2.c'
+Lines executed:100.00% of 19
+Creating 'randomtestcard2.c.gcov'
+
+File 'randomtestcard1.c'
+Lines executed:95.45% of 22
+Creating 'randomtestcard1.c.gcov'
+
+File 'randomtestcard1.c'
+Lines executed:95.45% of 22
+Creating 'randomtestcard1.c.gcov'
+

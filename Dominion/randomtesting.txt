@@ -1,0 +1,28 @@
+My random tester had signficantly better overall coverage than the unit tests that I did 
+in Assignment 2. I was able to get the following coverages for the cards that I tested:
+
+Adventurer: 14/18 (77.78% coverage)
+Great Hall: 5/5 100% statement coverage
+Council Room: 14/14 100 % statement and branch coverage
+
+As can be seen here, there was a little bit of code that i failed to cover. The main reason
+for this was likely that I was unable to properly test certain conditions in cardEffect.
+Some functions only changed parameters specific to cardEffect and these parameters could 
+not be accessed outside the function, so testing them would be impossible. Great Hall was
+easy to test because it was 5 lines. I was able to get 100% statement coverage, but there
+were no branches. I was able to get 100% line and branch coverage in council room, which was
+easier since it did not depend on internal parameters. It did not take very long to do this
+since this was not such a complex function either., and it finished getting coverage almost
+instantaneously. I was not able to properly cover  Adventurer, but adventurer depended on
+internal parameters which were difficult to test.
+
+These tests have far more coverage than the unit tests. This is likely because the unit tests
+only test a subset of possible inputs, while the random tests test a very large range of 
+possible inputs. With unit tests, one would have to sit for a long time and test all possible
+inputs to get as large a range as random testing does in a few seconds.
+
+Random tests also had better fault detection than the unit tests. The unit tests, once again
+only tested a small range of possible inputs, while the random tests tested essentially all 
+possible inputs within the random seed given. This larger range increases the probability of
+finding an erroneous output. My unit tests were able to find erroneous outputs, but not as 
+effectively as the random tests.
