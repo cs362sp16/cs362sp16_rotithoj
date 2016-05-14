@@ -1,8 +1,8 @@
         -:    0:Source:dominion.c
         -:    0:Graph:dominion.gcno
         -:    0:Data:dominion.gcda
-        -:    0:Runs:10
-        -:    0:Programs:10
+        -:    0:Runs:11
+        -:    0:Programs:11
         -:    1:#include "dominion.h"
         -:    2:#include "dominion_helpers.h"
         -:    3:#include "rngs.h"
@@ -46,27 +46,27 @@ function kingdomCards called 0 returned 0% blocks executed 0%
     #####:   34:  return k;
         -:   35:}
         -:   36:
-function initializeGame called 10 returned 100% blocks executed 9%
-       10:   37:int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
+function initializeGame called 11 returned 100% blocks executed 9%
+       11:   37:int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
         -:   38:		   struct gameState *state) {
         -:   39:
         -:   40:  int i;
         -:   41:  int j;
         -:   42:  int it;			
         -:   43:  //set up random number generator
-       10:   44:  SelectStream(1);
+       11:   44:  SelectStream(1);
 call    0 returned 100%
-       10:   45:  PutSeed((long)randomSeed);
+       11:   45:  PutSeed((long)randomSeed);
 call    0 returned 100%
         -:   46:  
         -:   47:  //check number of players
-       10:   48:  if (numPlayers > MAX_PLAYERS || numPlayers < 2)
-branch  0 taken 10% (fallthrough)
-branch  1 taken 90%
+       11:   48:  if (numPlayers > MAX_PLAYERS || numPlayers < 2)
+branch  0 taken 9% (fallthrough)
+branch  1 taken 91%
 branch  2 taken 100% (fallthrough)
 branch  3 taken 0%
         -:   49:    {
-       10:   50:      return -1;
+       11:   50:      return -1;
         -:   51:    }
         -:   52:
         -:   53:  //set number of players

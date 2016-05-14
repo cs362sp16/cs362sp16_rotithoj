@@ -1,9 +1,9 @@
 My random tester had signficantly better overall coverage than the unit tests that I did 
 in Assignment 2. I was able to get the following coverages for the cards that I tested:
 
-Adventurer: 14/18 (77.78% coverage)
+Adventurer: 6/20 (30% coverage)
 Great Hall: 5/5 100% statement coverage
-Council Room: 14/14 100 % statement and branch coverage
+Council Room: 22/22 100 % statement and branch coverage
 
 As can be seen here, there was a little bit of code that i failed to cover. The main reason
 for this was likely that I was unable to properly test certain conditions in cardEffect.
