@@ -22,14 +22,16 @@ int main(int argc, char * argv[]){
 	int kingdomCards [10] = {great_hall, outpost, baron, gardens, smithy, sea_hag, village, adventurer,remodel, council_room};
 		struct gameState *state = malloc(sizeof(struct gameState));
 	initializeGame(numPlayers, kingdomCards, randomSeed, state);
-
+     state -> numPlayers = whoseTurn(state) + 3;
 	int * bonus = NULL;
 	int x = state -> numBuys + 1;
+	int z = state -> handCount[7];
 	int y = cardEffect(card, choice1, choice2, choice3, state, handpos, bonus);
 	
 	//assert(state -> handCount[state -> whoseTurn] == 4);
-	assertTrue(state -> numBuys != x);
-	
+	assertTrue(state -> numBuys == x);
+	assertTrue(whoseTurn(state) != state -> numPlayers);
+	assertTrue(state -> handCount[7] > z);
 	return 0;
 }
 //tests courcil room
