@@ -1,0 +1,13 @@
+	When I compared my dominion implementation to that of my classmate's, I found that our
+output was different. I found this out because when I ran diffdominion to test for differences,
+it said TEST FAILED, which meant that our implementations were functionally different.
+I was able to collect coverage for both my dominion implementation and that of my classmate's.
+I found that I was able to cover 60.64% of my dominion.c, but only 54.74% of that of my 
+classmate's. 
+	Using this method, it really is very dificult to tell who has a correct implementation
+of dominion, or if even any of us do. The tester simply shows that my code is not equivalent
+to my classmate's. This can mean that either he is wrong, I am wrong, or that we both are wrong.
+This is a very large range of outcomes, and differential testing cannot really be used to 
+prove any of our programs correct in this case. This is not an ideal case of differential testing
+because it is not known that either of our code is correct, and the point of differential
+testing is to compare code to known correct code to see how your code matches up.

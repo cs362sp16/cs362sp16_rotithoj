@@ -1,0 +1,21 @@
+#!/bin/bash   
+cd $1
+make clean
+make testdominion.out
+cd ..
+
+cd $2
+make clean
+make testdominion.out
+cd ..
+
+$1/testdominion $3 > testdominion.out
+$2/testdominion $3 > testdominion.out
+
+
+diff $1/testdominion.out $2/testdominion.out > diff1
+if [[ -s $diff1 ]]; then
+	echo "TEST PASSED"
+else
+	echo "TEST FAILED"
+fi

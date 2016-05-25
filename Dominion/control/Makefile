@@ -64,7 +64,7 @@ testdominion: dominion.o testdominion.c
 	gcc -o  testdominion testdominion.c dominion.o rngs.o -g $(CFLAGS)
 	
 testdominion.out: testdominion playdom
-	./testdominion 42 >> testdominion.out
+	./testdominion 72 >> testdominion.out
 	echo "GCOV FOR ENTIRE DOMINION GAME" >> testdominion.out
 	gcov dominion.c >> testdominion.out
 
