@@ -36,6 +36,8 @@ values that are acceptable as player inputs are 0 and 1. HandPos is the position
 card in a player's hand. Because of this erroneous input, smithy behaved incorrectly, and this 
 changed the course of the game, since the player possibly drew too many(or too few) cards,
 and as a result ended up running out of cards too early or too late. 
+The fix to this would be to change the affected line to:
+drawCard(currentPlayer, state);
 	I used some of Agan's rules of debugging in this process. I used rule 1, which is to understand
 the system. I had to know how the game of dominion worked in order to determine that something was wrong
 with the way my game was functioning. I used many online resources, and I also inspected the code to see
