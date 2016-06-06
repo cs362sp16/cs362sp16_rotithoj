@@ -1,0 +1,25 @@
+	For the third part of my final project, I performed mutation testing on my own implementation
+of dominion.c. In order to create the mutants, I used an online C mutant generator, and
+generated 10 mutants. I then ran all of the mutants and tested their output against that 
+of the original dominion function. I then used my random tester to test out all of the mutants,
+and to compare the output of this to that of the origina dominion function. After testing
+all of these mutants, my random testr was able to kill all of the mutants. 
+	I generated some mutants that were uncompilable, but since these mutants were useless,
+I threw them out and only ran the mutants that compiled and produced a proper result. I think
+that the main reason that the tester was able to kill the mutants was that every change that 
+the mutation generator made had a significant impact on the way the program ran. for example,
+it changed some addition operators(+) to subtraction operators(-), and vice versa, which led
+to a snowball effect and as these small changes added up, the end result ended up being altered
+significantly. Also, some of the mutants had lines of code deleted, and this could have had a
+very significant impact on the end result, especially if it caused a card to function improperly
+or it caused a helper function like getWinners to function incorrectly. However, in some of 
+my functions, the mutant generator introduced a very large number of changes, and this could
+have caused a very large additive effect on the net output of the program.
+	Based on the results, I concluded that one of two things is possible. One possibility
+is that my random test generator is very good. This is potentially plausible because I was
+able to attain 60% coverage of the entire dominion.c function. However, the other possibliity
+is that the mutant generator generated very obvious changes or changed too many things. This
+is also plausible because the mutation tool did introduce a large number of changes into some 
+of the mutants. Also, small changes can stack up and make a big change in the output, and I 
+believe that the second scenario is what was more likely to have occurred. Overall, my tests
+were good, but the mutation tool helped make my tests seem better than they really were.

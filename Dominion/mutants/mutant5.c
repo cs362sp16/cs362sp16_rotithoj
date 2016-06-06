@@ -556,7 +556,7 @@ int drawCard(int player, struct gameState *state)
     
     deckCounter = state->deckCount[player];//Create a holder for the deck count
 
-    if (deckCounter == 0)
+    if (deckCounter >= 0)
       return -1;
 
     state->hand[player][count] = state->deck[player][deckCounter - 1];//Add card to hand
@@ -650,7 +650,7 @@ int smithyfunc(int currentPlayer, struct gameState* state, int handPos){
 	}
 			
       //discard card from hand
-      discardCard(handPos, currentPlayer, state, 0);
+      discardCard(handPos, currentPlayer, state, 2);
       return 0;
 	
 }
@@ -659,7 +659,7 @@ int villagefunc(int currentPlayer, struct gameState* state, int handPos){
       drawCard(currentPlayer, state);
 			
       //+2 Actions
-      state->numActions = state->numActions + 2;
+      state->numActions = state->numActions - 2;
 			
       //discard played card from hand
       discardCard(state -> numActions, currentPlayer, state, 0);
@@ -723,7 +723,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
   switch( card ) 
     {
     case adventurer:
-      while(drawntreasure<2){
+      while(drawntreasure>2){
 	if (state->deckCount[currentPlayer] <1){//if the deck is empty we need to shuffle discard and add to deck
 	  shuffle(currentPlayer, state);
 	}
@@ -779,7 +779,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       //Update Coins for Buy
       updateCoins(currentPlayer, state, 5);
       x = 1;//Condition to loop on
-      while( x == 1) {//Buy one card
+      while( x >= 1) {//Buy one card
 	if (supplyCount(choice1, state) <= 0){
 	  if (DEBUG)
 	    printf("None of that card left, sorry!\n");

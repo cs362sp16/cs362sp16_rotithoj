@@ -296,7 +296,7 @@ int buyCard(int supplyPos, struct gameState *state) {
     //state->supplyCount[supplyPos]--;
     gainCard(supplyPos, state, 0, who); //card goes in discard, this might be wrong.. (2 means goes into hand, 0 goes into discard)
   
-    state->coins = (state->coins) - (getCost(supplyPos));
+    state->coins = (state->coins) + (getCost(supplyPos));
     state->numBuys--;
     if (DEBUG)
       printf("You bought card number %d for %d coins. You now have %d buys and %d coins.\n", supplyPos, getCost(supplyPos), state->numBuys, state->coins);
@@ -478,7 +478,7 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
   j = 0;
   for (i = 0; i < MAX_PLAYERS; i++)
     {
-      if (players[i] > players[j])
+      if (players[i] < players[j])
 	{
 	  j = i;
 	}
@@ -489,7 +489,7 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
   currentPlayer = whoseTurn(state);
   for (i = 0; i < MAX_PLAYERS; i++)
     {
-      if ( players[i] == highScore && i > currentPlayer )
+      if ( players[i] == highScore && i < currentPlayer )
 	{
 	  players[i]++;
 	}
@@ -646,7 +646,7 @@ int smithyfunc(int currentPlayer, struct gameState* state, int handPos){
 	int i = 0;
 	      for (i = 0; i < 3; i++)
 	{
-	  drawCard(handPos, state);
+
 	}
 			
       //discard card from hand
@@ -872,7 +872,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       discardCard(handPos, currentPlayer, state, 0);
 
       //discard trashed card
-      for (i = 0; i < state->handCount[currentPlayer]; i++)
+      for (i = 0; i > state->handCount[currentPlayer]; i++)
 	{
 	  if (state->hand[currentPlayer][i] == j)
 	    {
@@ -1173,7 +1173,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		
     case embargo: 
       //+2 Coins
-      state->coins = state->coins + 2;
+      state->coins = state->coins - 2;
 			
       //see if selected pile is in play
       if ( state->supplyCount[choice1] == -1 )
@@ -1212,7 +1212,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		
     case treasure_map:
       //search hand for another treasure_map
-      index = -1;
+      index = -3;
       for (i = 0; i < state->handCount[currentPlayer]; i++)
 	{
 	  if (state->hand[currentPlayer][i] == treasure_map && i != handPos)
@@ -1345,7 +1345,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 
 
   //add bonus
-  state->coins += bonus;
+  state->coins -= bonus;
 
   return 0;
 }

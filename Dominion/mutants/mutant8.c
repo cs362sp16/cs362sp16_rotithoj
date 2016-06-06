@@ -814,7 +814,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       //Reset Hand
       for (i = 0; i <= state->handCount[currentPlayer]; i++){
 	state->hand[currentPlayer][i] = temphand[i];
-	temphand[i] = -1;
+
       }
       //Reset Hand
       			
@@ -1252,7 +1252,7 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
     {
       //add card to played pile
       state->playedCards[state->playedCardCount] = state->hand[currentPlayer][handPos]; 
-      state->playedCardCount++;
+
     }
 	
   //set played card to -1

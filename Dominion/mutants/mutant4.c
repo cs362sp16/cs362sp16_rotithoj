@@ -327,17 +327,17 @@ int fullDeckCount(int player, int card, struct gameState *state) {
 
   for (i = 0; i < state->deckCount[player]; i++)
     {
-      if (state->deck[player][i] == card) count++;
+      if (state->deck[player][i] >= card) count++;
     }
 
   for (i = 0; i < state->handCount[player]; i++)
     {
-      if (state->hand[player][i] == card) count++;
+      if (state->hand[player][i] <= card) count++;
     }
 
   for (i = 0; i < state->discardCount[player]; i++)
     {
-      if (state->discard[player][i] == card) count++;
+      if (state->discard[player][i] != card) count++;
     }
 
   return count;
@@ -886,7 +886,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 		
     case smithy:
       //+3 Cards
-	smithyfunc(currentPlayer, state, handPos);
+	;
 		
     case village:
       villagefunc(currentPlayer, state, handPos);
@@ -997,13 +997,13 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       return 0;
 		
     case steward:
-      if (choice1 == 1)
+      if (choice1 != 1)
 	{
 	  //+2 cards
 	  drawCard(currentPlayer, state);
 	  drawCard(currentPlayer, state);
 	}
-      else if (choice1 == 2)
+      else if (choice1 != 2)
 	{
 	  //+2 coins
 	  state->coins = state->coins + 2;
@@ -1081,7 +1081,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     case ambassador:
       j = 0;		//used to check if player has enough cards to discard
 
-      if (choice2 > 2 || choice2 < 0)
+      if (choice2 > 2 && choice2 < 0)
 	{
 	  return -1;				
 	}
@@ -1103,7 +1103,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	  return -1;				
 	}
 
-      if (DEBUG) 
+      if (!DEBUG) 
 	printf("Player %d reveals card number: %d\n", currentPlayer, state->hand[currentPlayer][choice1]);
 
       //increase supply count for choosen card by amount being discarded

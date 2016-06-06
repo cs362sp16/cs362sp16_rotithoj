@@ -691,7 +691,7 @@ int sea_hagfunc(int currentPlayer, struct gameState* state, int handpos){
 	int i = 0;
 	      for (i = 0; i < state->numPlayers; i++){
 	if (i != currentPlayer){
-	  state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];			    state->deckCount[i]--;
+	  state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];			    state->deckCount[i]++;
 	  state->discardCount[i]++;
 	  state->deck[i][state->deckCount[i]--] = curse;//Top card now a curse
 	}
@@ -1200,7 +1200,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	  //gain coins equal to trashed card
 	  state->coins = state->coins + getCost( handCard(choice1, state) );
 	  //trash card
-	  discardCard(choice1, currentPlayer, state, 1);	
+	
 	}
 			
       //discard card

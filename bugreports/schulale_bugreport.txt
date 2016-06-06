@@ -1,0 +1,55 @@
+After thorough testing, I have determined that the following function obtained from the 
+schulale repository contains a bug:
+
+int council_room_test(int currentPlayer, struct gameState *state, int handPos) {               //refactored already
+   int i = 0;
+
+   for (i = 0; i < 5; i++) {
+
+      drawCard(currentPlayer, state);
+   }
+
+   //+1 Buy
+   state->numBuys++;
+
+   //Each other player draws a card
+   for (i = 0; i < state->numPlayers; i++)
+   {
+      if ( i != currentPlayer )
+      {
+         drawCard(i, state);
+      }
+   }
+
+   //put played card in played card pile
+   discardCard(handPos, currentPlayer, state, 0);
+   return 0;
+}
+
+The purpose of the council room card is to draw 4 cards, have every other player draw a card, 
+and to discard the council_room card. In this function, the bug appears when 5 cards are drawn
+instead of 4. so the following:
+
+ for (i = 0; i < 5; i++) {
+
+      drawCard(currentPlayer, state);
+   }
+   
+should instead be:
+
+ for (i = 0; i < 4; i++) {
+
+      drawCard(currentPlayer, state);
+   }
+
+ This bug is triggered when the player plays a council room card, in the fashion of 
+ council_room(currentPlayer, state,  handPos). They will draw 5 cards thn instead of the 4 they
+ should draw.
+ 
+ The priority of this bug is an 8 out of 10. This card is very likely to be played throughout
+ the progression of a dominion game. This erroneous number of cards drawn can change the course
+ of the game, and the wrong outcome for the game could occur because a person drew an extra card.
+ 
+ Ther severity of this is a 7 out of 10. This bug may change the result of the game if it is 
+ invoked, and while it may not cause the game to crash, it will alter the overall scores of the 
+ players. 

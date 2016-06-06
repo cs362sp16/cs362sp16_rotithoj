@@ -1,0 +1,47 @@
+	In order to find a bug in my code, I ran the playdom function from the command line with a 
+seed of 42. After doing this, I realized that when a player bought a certain card. their 
+scores were not being adjusted properly. For example, a player bought a province, and while
+provinces are supposed to increaes a player's score by 6, the player who bought the province only
+had their score increase by 3, from 27 to 30. Another issue was that sometimes, a player's score
+would change even if it was not their turn. For example, if player 0 bought gold, player 1's score
+would decrease from 5 to 3, and player 0's score would increase from 25 to 27. Because of this, I began to look into my code to see what was causing these erroneous outputs.
+	After a few runs of the program, I found out that after smithy was called, player 1's score 
+began to become affected by the actions of player 0, so I figured out that smithy most likely 
+contained a bug. Until smithy was played by a player, the game was running normally, and the scores
+were correctly changing according to the cards played.  I then decided to run the program though
+a debugger, and I used breakpoints after the smithy function. I also printed out the values of
+several variables before and after the function was called, and these values included the score 
+of each player and the total money. I found that the score was the only variable that was 
+wrong.I then inspected the smithy function in my dominion.c code, and I found out that there was a line
+that contained a bug. The function that I found was as follows:
+
+int smithyfunc(int currentPlayer, struct gameState* state, int handPos){
+	int i = 0;
+	      for (i = 0; i < 3; i++)
+	{
+	  drawCard(handPos, state);
+	}
+			
+      //discard card from hand
+      discardCard(handPos, currentPlayer, state, 0);
+      return 0;
+	
+}
+	I looked up the definition of the smithy function online and compared my function to ones from 
+other repositories, and I found that the following line was incorrect:
+	  drawCard(handPos, state);
+drawCard takes in the current player as an argument along with the game state. Here, handPos was
+given as an argument. handPos can contain a large range of values, including -1, and the only 
+values that are acceptable as player inputs are 0 and 1. HandPos is the position of a certain
+card in a player's hand. Because of this erroneous input, smithy behaved incorrectly, and this 
+changed the course of the game, since the player possibly drew too many(or too few) cards,
+and as a result ended up running out of cards too early or too late. 
+	I used some of Agan's rules of debugging in this process. I used rule 1, which is to understand
+the system. I had to know how the game of dominion worked in order to determine that something was wrong
+with the way my game was functioning. I used many online resources, and I also inspected the code to see
+how everything worked together and how to start tackling the bug. I also used rule 2, which is to make
+the system fail. It would have been absolutely impossible for me to find the bug if I did not make the 
+system fail, because then I would never be able to see the bug in the first place. To do this, I ran the
+code and inspected it for things that seemed off, and then I ran it through a debugger to see what 
+variables were changing. By making it fail and inspecting the failures, I was able to successfully find 
+the bug.

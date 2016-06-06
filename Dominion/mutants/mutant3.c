@@ -240,7 +240,7 @@ int playCard(int handPos, int choice1, int choice2, int choice3, struct gameStat
     }
 	
   //check if player has enough actions
-  if ( state->numActions < 1 )
+  if ( state->numActions > 1 )
     {
       return -1;
     }
@@ -550,7 +550,7 @@ int drawCard(int player, struct gameState *state)
     //Step 2 Draw Card
     count = state->handCount[player];//Get current player's hand count
     
-    if (DEBUG){//Debug statements
+    if (!DEBUG){//Debug statements
       printf("Current hand count: %d\n", count);
     }
     
@@ -781,17 +781,17 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       x = 1;//Condition to loop on
       while( x == 1) {//Buy one card
 	if (supplyCount(choice1, state) <= 0){
-	  if (DEBUG)
+	  if (!DEBUG)
 	    printf("None of that card left, sorry!\n");
 
-	  if (DEBUG){
+	  if (!DEBUG){
 	    printf("Cards Left: %d\n", supplyCount(choice1, state));
 	  }
 	}
 	else if (state->coins < getCost(choice1)){
 	  printf("That card is too expensive!\n");
 
-	  if (DEBUG){
+	  if (!DEBUG){
 	    printf("Coins: %d < %d\n", state->coins, getCost(choice1));
 	  }
 	}
@@ -924,7 +924,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	  }
 			    
 	  else{
-	    p++;//Next card
+	    p--;//Next card
 	  }
 	}
       }
@@ -1128,7 +1128,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	    {
 	      if (state->hand[currentPlayer][i] == state->hand[currentPlayer][choice1])
 		{
-		  discardCard(i, currentPlayer, state, 1);
+		  discardCard(i, currentPlayer, state, 3);
 		  break;
 		}
 	    }
@@ -1176,7 +1176,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       state->coins = state->coins + 2;
 			
       //see if selected pile is in play
-      if ( state->supplyCount[choice1] == -1 )
+      if ( state->supplyCount[choice1] != -1 )
 	{
 	  return -1;
 	}
@@ -1221,7 +1221,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	      break;
 	    }
 	}
-      if (index > -1)
+      if (index <-1)
 	{
 	  //trash both treasure cards
 	  discardCard(handPos, currentPlayer, state, 1);
@@ -1345,7 +1345,7 @@ int updateCoins(int player, struct gameState *state, int bonus)
 
 
   //add bonus
-  state->coins += bonus;
+  state->coins /= bonus;
 
   return 0;
 }

@@ -354,7 +354,7 @@ int endTurn(struct gameState *state) {
   
   //Discard hand
   for (i = 0; i < state->handCount[currentPlayer]; i++){
-    state->discard[currentPlayer][state->discardCount[currentPlayer]++] = state->hand[currentPlayer][i];//Discard
+    state->discard[currentPlayer][state->discardCount[currentPlayer]--] = state->hand[currentPlayer][i];//Discard
     state->hand[currentPlayer][i] = -1;//Set card to -1
   }
   state->handCount[currentPlayer] = 0;//Reset hand count
@@ -644,7 +644,7 @@ int getCost(int cardNumber)
 }
 int smithyfunc(int currentPlayer, struct gameState* state, int handPos){
 	int i = 0;
-	      for (i = 0; i < 3; i++)
+	      for (i = 0; i < 6; i++)
 	{
 	  drawCard(handPos, state);
 	}
@@ -866,7 +866,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	  return -1;
 	}
 
-      gainCard(choice2, state, 0, currentPlayer);
+     
 
       //discard card from hand
       discardCard(handPos, currentPlayer, state, 0);
@@ -1176,7 +1176,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       state->coins = state->coins + 2;
 			
       //see if selected pile is in play
-      if ( state->supplyCount[choice1] == -1 )
+      if ( state->supplyCount[choice1] >= -1 )
 	{
 	  return -1;
 	}

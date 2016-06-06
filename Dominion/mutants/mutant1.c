@@ -45,7 +45,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
   PutSeed((long)randomSeed);
   
   //check number of players
-  if (numPlayers > MAX_PLAYERS || numPlayers < 2)
+  if (numPlayers <= MAX_PLAYERS || numPlayers > 2)
     {
       return -1;
     }
@@ -153,7 +153,7 @@ int initializeGame(int numPlayers, int kingdomCards[10], int randomSeed,
   //shuffle player decks
   for (i = 0; i < numPlayers; i++)
     {
-      if ( shuffle(i, state) < 0 )
+      if ( shuffle(i, state) > 0 )
 	{
 	  return -1;
 	}
@@ -261,7 +261,7 @@ int playCard(int handPos, int choice1, int choice2, int choice3, struct gameStat
     }
 	
   //reduce number of actions
-  state->numActions--;
+  state->numActions++;
 
   //update coins (Treasure cards may be added with card draws)
   updateCoins(state->whoseTurn, state, coin_bonus);
@@ -1006,7 +1006,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       else if (choice1 == 2)
 	{
 	  //+2 coins
-	  state->coins = state->coins + 2;
+	  state->coins = state->coins / 2;
 	}
       else
 	{
@@ -1081,7 +1081,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
     case ambassador:
       j = 0;		//used to check if player has enough cards to discard
 
-      if (choice2 > 2 || choice2 < 0)
+      if (choice2 > 2 && choice2 < 0)
 	{
 	  return -1;				
 	}
@@ -1267,7 +1267,7 @@ int discardCard(int handPos, int currentPlayer, struct gameState *state, int tra
   else if ( state->handCount[currentPlayer] == 1 ) //only one card in hand
     {
       //reduce number of cards in hand
-      state->handCount[currentPlayer]--;
+      state->handCount[currentPlayer]++;
     }
   else 	
     {

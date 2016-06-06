@@ -466,7 +466,7 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
       //set unused player scores to -9999
       if (i >= state->numPlayers)
 	{
-	  players[i] = -9999;
+	  ;
 	}
       else
 	{
@@ -491,7 +491,7 @@ int getWinners(int players[MAX_PLAYERS], struct gameState *state) {
     {
       if ( players[i] == highScore && i > currentPlayer )
 	{
-	  players[i]++;
+	  players[i]--;
 	}
     }
 
@@ -898,7 +898,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 	int card_not_discarded = 1;//Flag for discard set!
 	while(card_not_discarded){
 	  if (state->hand[currentPlayer][p] == estate){//Found an estate card!
-	    state->coins += 4;//Add 4 coins to the amount of coins
+	    state->coins -= 4;//Add 4 coins to the amount of coins
 	    state->discard[currentPlayer][state->discardCount[currentPlayer]] = state->hand[currentPlayer][p];
 	    state->discardCount[currentPlayer]++;
 	    for (;p < state->handCount[currentPlayer]; p++){
@@ -1141,7 +1141,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       updateCoins(currentPlayer, state, 2);
       for (i = 0; i < state->numPlayers; i++)
 	{
-	  if (i != currentPlayer)
+	  if (i == currentPlayer)
 	    {
 	      for (j = 0; j < state->handCount[i]; j++)
 		{
@@ -1215,7 +1215,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
       index = -1;
       for (i = 0; i < state->handCount[currentPlayer]; i++)
 	{
-	  if (state->hand[currentPlayer][i] == treasure_map && i != handPos)
+	  if (state->hand[currentPlayer][i] == treasure_map && i == handPos)
 	    {
 	      index = i;
 	      break;
