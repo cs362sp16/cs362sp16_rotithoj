@@ -69,11 +69,11 @@ This bug can be triggered by the player playing the feast card. however, this fu
 contained inside of cardEFfect. In order to invoke the bug, the player would have to call
 cardEffect, for example cardEffect(card, choice1, choice2, choice3, state, handPos, bonus).
 
-The priority of this bug is an 8 out of 10. This bug can alter the course of the dominion game if
+The priority of this bug is an 8 out of 10(High). This bug can alter the course of the dominion game if
 feast is called, and the result may be different from the one that should have actually occurred.
 This issue would need ot be fixed quickly for a proper game of dominion to be played.
 
-The severity of this issue is an 8 out of 10. Unlike the other 2 bugs, this is guaranteed to
+The severity of this issue is an 8 out of 10(High). Unlike the other 2 bugs, this is guaranteed to
 change the course of the game if it is invoked. It is very likely that the card will be called
 at least once, so the game result will very likely be different from what it should be, depending 
 on the circumstances. Rather than perform any specific action, the function simply does not do 

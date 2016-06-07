@@ -46,10 +46,10 @@ should instead be:
  council_room(currentPlayer, state,  handPos). They will draw 5 cards thn instead of the 4 they
  should draw.
  
- The priority of this bug is an 8 out of 10. This card is very likely to be played throughout
+ The priority of this bug is an 8 out of 10(High). This card is very likely to be played throughout
  the progression of a dominion game. This erroneous number of cards drawn can change the course
  of the game, and the wrong outcome for the game could occur because a person drew an extra card.
  
- Ther severity of this is a 7 out of 10. This bug may change the result of the game if it is 
+ Ther severity of this is a 7 out of 10(HIgh). This bug may change the result of the game if it is 
  invoked, and while it may not cause the game to crash, it will alter the overall scores of the 
  players. 

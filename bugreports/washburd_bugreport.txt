@@ -38,11 +38,11 @@ This bug would be triggered whenever the smithy_card function is called during t
 a game of Dominion. To trigger the bug, a user can simply call smithy_card(state, currentplayer, handpos), 
 and they will only recieve 2 cards instead of 3.
 
-The priority of this bug is a 8 out of 10. Throughout the game of dominion, it is very likely that 
+The priority of this bug is a 8 out of 10(High). Throughout the game of dominion, it is very likely that 
 the user will call the Smithy card at least once throughout the game, and this bug could alter the 
 course of the game. In order to allow the user to play a proper game of dominion, this bug needs
 to be fixed soon.
 
-THe severity of this issue is a 7 out of 10. This bug will alter the course of the game if the 
+THe severity of this issue is a 7 out of 10(High). This bug will alter the course of the game if the 
 Smithy function is called. The bug does not cause the game to crash, and it is not higher in 
 severity because the Smithy card might not be called that often, depending on the deck. It depends on who draws what cards.
